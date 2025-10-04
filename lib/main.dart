@@ -34,7 +34,7 @@ class _AforoScreenState extends State<AforoScreen> {
   final FocusNode _capacidadFocus = FocusNode();
   final PageController _pageController = PageController();
   
-  int _capacidadMaxClientes = 100;
+  int _capacidadMaxClientes = 50;
   int _aforoValorActual = 0;
   List<String> _historial = [];
   int _paginaActual = 0;
@@ -68,7 +68,28 @@ class _AforoScreenState extends State<AforoScreen> {
   void _editAforo(int valorNuevo) {
     setState(() {
       int nuevoValorAforo = _aforoValorActual + valorNuevo;
-      
+
+      if ([1, 2, 3, 4].contains(_aforoValorActual) && valorNuevo == -5) {
+        _mostrarMensaje('No puedes reducir el aforo por debajo de 0');
+        return;
+      }      
+
+      if (_aforoValorActual == 1 && valorNuevo == -5) {
+        _mostrarMensaje('No puedes reducir el aforo por debajo de 0');
+        return;
+      }
+
+      if (_aforoValorActual == 3 && valorNuevo == -5) {
+        _mostrarMensaje('No puedes reducir el aforo por debajo de 0');
+        return;
+      }
+
+      if (_aforoValorActual == 4 && valorNuevo == -5) {
+        _mostrarMensaje('No puedes reducir el aforo por debajo de 0');
+        return;
+      }
+
+
       if (nuevoValorAforo < 0) {
         nuevoValorAforo = 0;
         _mostrarMensaje('El aforo no puede ser un número menor a 0');
